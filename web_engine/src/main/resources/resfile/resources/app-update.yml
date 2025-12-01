@@ -1,0 +1,3 @@
+provider: generic
+url: http://api.bilibili.com/x/elec-frontend/update/
+updaterCacheDirName: bilibili-updater

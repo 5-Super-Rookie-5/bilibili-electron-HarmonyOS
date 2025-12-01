@@ -1,0 +1,108 @@
+{
+  "lockVersion": "1.0",
+  "settings": {
+    "resolveConflict": true,
+    "resolveConflictStrict": false,
+    "installAll": true
+  },
+  "overrides": {},
+  "overrideDependencyMap": {},
+  "modules": {
+    ".": {
+      "name": "",
+      "dependencies": {},
+      "devDependencies": {
+        "@ohos/hypium": {
+          "specifier": "1.0.6",
+          "version": "1.0.6"
+        }
+      },
+      "dynamicDependencies": {},
+      "maskedByOverrideDependencyMap": false
+    },
+    "electron": {
+      "name": "electron",
+      "dependencies": {
+        "web_engine": {
+          "specifier": "file:web_engine",
+          "version": "file:web_engine"
+        }
+      },
+      "devDependencies": {},
+      "dynamicDependencies": {},
+      "maskedByOverrideDependencyMap": false
+    },
+    "web_engine": {
+      "name": "web_engine",
+      "dependencies": {
+        "inversify": {
+          "specifier": "^6.0.1",
+          "version": "6.0.1"
+        },
+        "reflect-metadata": {
+          "specifier": "^0.1.13",
+          "version": "0.2.1"
+        }
+      },
+      "devDependencies": {
+        "libadapter.so": {
+          "specifier": "file:web_engine/src/main/cpp/types/libadapter",
+          "version": "file:web_engine/src/main/cpp/types/libadapter"
+        }
+      },
+      "dynamicDependencies": {},
+      "maskedByOverrideDependencyMap": false
+    }
+  },
+  "packages": {
+    "@ohos/hypium@1.0.6": {
+      "integrity": "sha512-bb3DWeWhYrFqj9mPFV3yZQpkm36kbcK+YYaeY9g292QKSjOdmhEIQR2ULPvyMsgSR4usOBf5nnYrDmaCCXirgQ==",
+      "storePath": "oh_modules/.ohpm/@ohos+hypium@1.0.6",
+      "dependencies": {},
+      "dynamicDependencies": {},
+      "dev": true,
+      "dynamic": false,
+      "maskedByOverrideDependencyMap": false
+    },
+    "web_engine@file:web_engine": {
+      "storePath": "web_engine",
+      "dependencies": {
+        "inversify": "6.0.1",
+        "reflect-metadata": "0.2.1"
+      },
+      "devDependencies": {
+        "libadapter.so": "web_engine/src/main/cpp/types/libadapter"
+      },
+      "dynamicDependencies": {},
+      "dev": false,
+      "dynamic": false,
+      "maskedByOverrideDependencyMap": false
+    },
+    "inversify@6.0.1": {
+      "integrity": "sha512-B3ex30927698TJENHR++8FfEaJGqoWOgI6ZY5Ht/nLUsFCwHn6akbwtnUAPCgUepAnTpe2qHxhDNjoKLyz6rgQ==",
+      "storePath": "oh_modules/.ohpm/inversify@6.0.1",
+      "dependencies": {},
+      "dynamicDependencies": {},
+      "dev": false,
+      "dynamic": false,
+      "maskedByOverrideDependencyMap": false
+    },
+    "reflect-metadata@0.2.1": {
+      "integrity": "sha512-i5lLI6iw9AU3Uu4szRNPPEkomnkjRTaVt9hy/bn5g/oSzekBSMeLZblcjP74AW0vBabqERLLIrz+gR8QYR54Tw==",
+      "storePath": "oh_modules/.ohpm/reflect-metadata@0.2.1",
+      "dependencies": {},
+      "dynamicDependencies": {},
+      "dev": false,
+      "dynamic": false,
+      "maskedByOverrideDependencyMap": false
+    },
+    "libadapter.so@file:web_engine/src/main/cpp/types/libadapter": {
+      "storePath": "web_engine/src/main/cpp/types/libadapter",
+      "dependencies": {},
+      "dynamicDependencies": {},
+      "dev": true,
+      "dynamic": false,
+      "maskedByOverrideDependencyMap": false
+    }
+  }
+}
