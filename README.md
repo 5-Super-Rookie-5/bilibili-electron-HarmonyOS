@@ -1,5 +1,9 @@
 # bilibili-electron-HarmonyOS
 基于https://github.com/msojocs/bilibili-linux 移植的哔哩哔哩electron鸿蒙版
+# 下载本项目
+```
+git lfs clone https://github.com/5-Super-Rookie-5/bilibili-electron-HarmonyOS.git --depth 1
+```
 ## 免责声明
 
 License 仅对本项目生效，不针对其产物。
