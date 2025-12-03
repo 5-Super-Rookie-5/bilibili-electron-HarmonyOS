@@ -26,6 +26,7 @@ import lazy { GlobalThisHelper } from '../utils/GlobalThisHelper';
 import { promptAction } from '@kit.ArkUI';
 import { image } from '@kit.ImageKit';
 import { kvManager, KVStoreInterface } from '../utils/KVStore';
+import { picker } from '@kit.CoreFileKit';
 
 
 const TAG: string = 'WebAbility';
@@ -95,6 +96,18 @@ export class WebAbility extends WebBaseAbility {
     this.contextAdapter = Inject.get(ContextAdapter);
 
     Inject.get(PermissionManagerAdapter).initPermissions();
+
+    // 在 OnCreate 中创建一个 Picker，使用 DOWNLOAD 模式保存文件，这样系统会自动创建下载目录下以包名命名，显示为应用名的目录。
+    // 同步修改的还有 app.asar，其中对 app.js 中硬编码的默认缓存目录进行了修改，可以实现无需手动授权即可正常缓存视频
+    // 但有一个小缺点，就算把下载目录选在其他位置并删除默认目录，每次打开软件时仍然会创建默认目录。笔者能力有限，混淆+加密后的js真不是人改的。不过本人认为问题不大，毕竟很多鸿蒙应用从现象上也是这样的（逃
+    // 后续版本更新/更换包名时也需对 asar 中 app.js 进行修改，可通过查找 defaultDownloadPath 快速定位相关代码，前面一处的 ["app"]["getPath"]("videos") 的 videos 改为 downloads，后面将该变量与另一加密代码调用 join 处的加密代码直接改为明文 "com.bilibili.ohos_electron" 即可。
+    // 修改前示例：try {eG = di["app"]["getPath"]("videos");} catch (k) {try {eG = di["app"]["getPath"](g["PsdKk"]);} catch (l) {eG = ep;}}(eH = (0, dj["join"])(eG, kf(639, "k(V$")),
+    // 修改后示例：try {eG = di["app"]["getPath"]("downloads");} catch (k) {try {eG = di["app"]["getPath"](g["PsdKk"]);} catch (l) {eG = ep;}}(eH = (0, dj["join"])(eG, "com.bilibili.ohos_electron"),
+    const documentViewPicker = new picker.DocumentViewPicker();
+    const documentSaveOptions = new picker.DocumentSaveOptions();
+    // 配置保存的模式为DOWNLOAD，若配置了DOWNLOAD模式，此时配置的其他documentSaveOptions参数将不会生效。
+    documentSaveOptions.pickerMode = picker.DocumentPickerMode.DOWNLOAD;
+    documentViewPicker.save(documentSaveOptions);
 
     this.deviceInfoAdapter = Inject.get(DeviceInfoAdapter);
     this.appLifecycleAdapter = Inject.get(AppLifecycleAdapter);
