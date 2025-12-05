@@ -2,7 +2,7 @@
   "color": [
     {
       "name": "start_window_background",
-      "value": "#FFFFFF"
+      "value": "#17181a"
     },
     {
       "name": "button_background",
@@ -15,6 +15,10 @@
     {
       "name": "checkbox_selected",
       "value": "#FF6699"
+    },
+    {
+      "name": "print_tip_button",
+      "value": "#FFAC4668"
     }
   ]
 }

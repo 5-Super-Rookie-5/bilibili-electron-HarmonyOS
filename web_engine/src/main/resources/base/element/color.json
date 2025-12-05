@@ -6,7 +6,7 @@
     },
     {
       "name": "button_background",
-      "value": "#007DFF"
+      "value": "#FF6699"
     },
     {
       "name": "button_font",
@@ -14,11 +14,11 @@
     },
     {
       "name": "checkbox_selected",
-      "value": "#007DFF"
+      "value": "#FF6699"
     },
     {
       "name": "print_tip_button",
-      "value": "#ff0a34a2"
+      "value": "#FFAC4668"
     }
   ]
 }

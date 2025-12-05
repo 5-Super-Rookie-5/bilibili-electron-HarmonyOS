@@ -434,7 +434,7 @@ export class WebAbility extends WebBaseAbility {
     return true;
   }
 
- async onPrepareToTerminateAsync(): Promise<boolean> {
+ /*-- async onPrepareToTerminateAsync(): Promise<boolean> {
     let id: number = Number(this.xcomponentId.substring(ConfigData.WINDOW_PREFIX.length));
     let response: BrowserCloseResponse = BrowserCloseResponse.kUndetermined;
     this.nativeContext.OnWindowEvent(this.xcomponentId, WebAbility.WINDOW_CLOSE);
@@ -449,6 +449,17 @@ export class WebAbility extends WebBaseAbility {
       return false;
     }
     return true;
+  } --*/
+
+  //重写方法 by @cnoim
+  async onPrepareToTerminateAsync(): Promise<boolean> {
+    LogUtil.info(TAG, 'WebAbility -> onPrepareToTerminateAsync');
+    this.nativeContext.OnWindowEvent(this.xcomponentId, WebAbility.WINDOW_CLOSE);
+    // onPrepareToTerminateAsync在用户主动点击关闭键/扫掉后台时触发，因为关闭键的功能被b站重写了，所以只有扫掉后台会触发到这里
+    // 鸿蒙6.0+扫掉后台默认会删除任务卡片，所以触发到这里时一定要让应用进程退出，否则可能会出现幽灵进程
+    // 调用appLifecycleAdapter的onWebDestroy方法，模拟electron内部退出进程的行为
+    this.appLifecycleAdapter?.onWebDestroy();
+    return false;
   }
 
   sleep(delay: number) {

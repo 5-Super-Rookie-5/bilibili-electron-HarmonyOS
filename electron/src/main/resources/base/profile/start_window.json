@@ -1,0 +1,7 @@
+{
+  "startWindowType": "REQUIRED_SHOW",
+  "startWindowColorModeType": "FOLLOW_SYSTEM",
+  "startWindowBackgroundImage": "$media:bilibili",
+  "startWindowBackgroundColor": "$color:start_window_background",
+  "startWindowBackgroundImageFit": "ScaleDown"
+}

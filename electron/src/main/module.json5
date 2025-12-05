@@ -23,8 +23,9 @@
         "name": "EntryAbility",
         "srcEntry": "./ets/entryability/EntryAbility.ets",
         "description": "$string:EntryAbility_desc",
-        "icon": "$media:app_icon",
+        "icon": "$media:app_layered_image",
         "label": "$string:EntryAbility_label",
+        "startWindow": "$profile:start_window",
         "startWindowIcon": "$media:startIcon",
         "startWindowBackground": "$color:start_window_background",
         "launchType": "specified",
@@ -54,7 +55,8 @@
         "name": "BrowserAbility",
         "srcEntry": "./ets/entryability/BrowserAbility.ets",
         "description": "$string:BrowserAbility_desc",
-        "startWindowIcon": "$media:app_icon",
+        "startWindow": "$profile:start_window",
+        "startWindowIcon": "$media:startIcon",
         "startWindowBackground": "$color:start_window_background",
         "removeMissionAfterTerminate": true,
         "exported": false,
@@ -73,7 +75,8 @@
         "srcEntry": "./ets/entryability/StatelessAbility.ets",
         "description": "$string:StatelessAbility_desc",
         "label": "$string:StatelessAbility_label",
-        "startWindowIcon": "$media:app_icon",
+        "startWindow": "$profile:start_window",
+        "startWindowIcon": "$media:startIcon",
         "startWindowBackground": "$color:start_window_background",
         "launchType": "specified",
         "removeMissionAfterTerminate": true,
@@ -83,12 +86,12 @@
     ],
     "extensionAbilities": [
       {
-        "name": "StatusBarEntryAbility",
-        "icon": "$media:app_icon",
+        "name": "StatusBarExtensionAbility",
+        "icon": "$media:app_layered_image",
         "description": "$string:StatusBarEntryAbility_desc",
         "type": "statusBarView",
         "exported": false,
-        "srcEntry": "./ets/entryability/StatusBarEntryAbility.ets"
+        "srcEntry": "./ets/extensionAbility/StatusBarExtensionAbility.ets"
       },
       {
         "name": "BrowserEmbeddedAbility",
