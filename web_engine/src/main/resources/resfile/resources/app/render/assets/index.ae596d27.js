@@ -1,0 +1,1 @@
+import{_ as t}from"./plugin-vue_export-helper.21dcd24c.js";import{Q as a,o as e,aj as o,V as c,bA as s,ar as _}from"./index.f074ecef.js";const i={};function m(l,p){const r=a("router-view");return e(),o(r,null,{default:c(({Component:n})=>[(e(),o(s,{exclude:["HomeBangumiMore"]},[(e(),o(_(n)))],1024))]),_:1})}var d=t(i,[["render",m]]);export{d as default};

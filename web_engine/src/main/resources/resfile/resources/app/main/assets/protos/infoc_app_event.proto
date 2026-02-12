@@ -1,0 +1,147 @@
+syntax = "proto3";
+
+//  功能描述：
+//      上报数据协议
+// ------------------------------------------------------
+// 参数说明：
+// ------------------------------------------------------
+// infoc日志协议接口文档
+
+// 移动端公共字段信息
+message AppInfo {
+    int32  app_id = 1; //产品编号，由数据平台分配，粉=1，白=2，蓝=3，直播姬=4，HD=5，海外=6，OTT=7，漫画=8，TV野版=9，小视频=10，网易漫画=11，网易漫画lite=12，网易漫画HD=13,国际版=14
+    int32  platform = 2; //平台编号，iphone=1，ipad=2，android=3，wp=4
+    string buvid = 3; //设备id
+    string chid = 4; //渠道标识
+    string brand = 5; //手机品牌
+    string device_id = 6; //设备硬件id
+    string model = 7; //手机型号
+    string osver = 8; //系统版本
+    int64 fts = 9; // app首次运行时间
+    string buvid_shared = 10; //外部公用的设备ID
+    int32 uid = 11; // uid
+    int32 api_level = 12; // api level
+    string abi = 13; // abi
+    string bilifp = 14; // 设备指纹ID
+    string session_id = 15; // 会话ID
+}
+
+// 事件类型
+enum EventCategory {
+    OTHER = 0;
+    PAGEVIEW = 1;
+    CLICK = 2;
+    EXPOSURE = 3;
+    SYSTEM = 4;
+    TRACKER = 5;
+    CUSTOM = 7; //自定义事件
+    COMPATIBLE = 8; //该事件类型主要用于埋点迁移时统一落地汇总使用
+    PLAYER = 9; //播放器类型
+}
+
+// 运行时网络状态
+enum RuntimeNetWork {
+    UNKNOWN = 0;
+    WIFI = 1; //WIFI
+    CELLULAR = 2; //移动网络
+    OFFLINE = 3;  //未连接
+    OTHERNET = 4; //其他网络
+    ETHERNET = 5; //以太网
+}
+
+// 系统运行时信息
+message AppRuntimeInfo {
+    RuntimeNetWork network = 1; //事件发生时的网络状态
+    string oid = 2; //事件发生时的运营商
+    double longitude = 3; //经度
+    double latitude = 4; //纬度
+    string version = 5; //客户端版本号
+    string version_code = 6; //客户端versioncode
+    string logver = 7; //日志SDK版本
+    string abtest = 8; // 当前设备的实验环境
+    string ff_version = 9; // ff version
+}
+
+// 移动端行为事件
+message AppEvent {
+    //事件元数据
+    string event_id = 1; //事件event_id，由数据平台准入时预定义
+    AppInfo app_info = 2; // 移动端公共字段信息
+    AppRuntimeInfo runtime_info = 3; //事件运行时信息
+    string mid = 4; //登录的用户id
+    int64 ctime = 5;  //事件发生的时间，13位时间戳格式
+    string log_id = 6; // 数据传输logId
+    int32 retry_send_count = 7;  // 数据重复发送的次数
+    int64 sn = 8; // 客户端数据上报流水号
+    EventCategory event_category = 9;
+    AppPageViewInfo app_page_view_info = 10;
+    AppClickInfo app_click_info = 11;
+    AppExposureInfo app_exposure_info = 12;
+
+    //业务扩展字段
+    map<string, string> extended_fields = 13;
+    int32 page_type = 14; // native=1, 站内h5=2
+    int64 sn_gen_time = 15; //sn生成时间，13位时间戳格式
+    int64 upload_time = 16; //发送时间，不用保存到数据库
+
+    AppPlayerInfo app_player_info = 17;
+
+}
+
+//PageView事件公共信息
+message AppPageViewInfo {
+    string event_id_from = 1; //来源event_id，页面或模块级
+    int32 load_type = 4; //PV的浏览类型，0：正常浏览；1：回退浏览
+    int64 duration = 5; //页面展现的时长，单位毫秒
+    int64 pvstart = 6; // 页面进入时间
+    int64 pvend = 7;  // 页面离开时间
+}
+
+//Exposure事件公共信息
+message AppExposureInfo {
+    message AppExposureContentInfo {
+        string event_id = 1; //曝光事件的event_id，模块级甚至位置级，由数据平台准入时预定义
+        //业务扩展字段
+        map<string, string> extended_fields = 2;
+    }
+    repeated AppExposureContentInfo content_infos = 1;
+}
+
+//Click事件公共信息
+message AppClickInfo {
+
+}
+
+// 播放器事件公共信息
+message AppPlayerInfo {
+    string play_from_spmid = 1; // 播放来源
+    string season_id = 2; // season_id，OGV视频才有
+    int32 type = 3; // 3-普通视频 , 4-PGC 1-2 保留值 5-pgc预览
+    int32 sub_type = 4; // 1番剧 2电影 3纪录片 4国创 5电视剧
+    string ep_id = 5; // 剧集id，OGV视频才有
+    string progress = 6; // 本次上报触发时与上一次上报期间所播放过的进度区间
+    string avid = 7; // 稿件id
+    string cid = 8; // 分P的ID
+    int32 network_type = 9; // 上报时的播放器网络类型，1:WIFI,2:蜂窝,3:无网络,4:联调免流,5:移动免流,6:电信免流
+    int32 danmaku = 10; // 是否开启弹幕：1开启；2.关闭
+    int32 status = 11; // 本次上报时的播放状态：1.半屏，2.全屏，3.inline，4.音频播放，5.后台播放
+    int32 play_method = 12; // 播放形式： 1.单P直接播放完暂停；2.多P连续播放；3.单P无脑循环模式；5.连续播完循环
+    int32 play_type = 13; // 播放器类型： 1.ijk播放器（未能区分软硬解）；2.腾讯视频播放器；3.av（ios系统播放器）；4.mp（android系统播放器）；5.ijk软解；6.ijk硬解
+    string player_session_id = 14; // 唯一标识播放行为ID
+    string speed = 15; // 播放速度：0.5，0.75，1.0，1.25，1.5，2.0
+    string player_clarity = 16; // 当前播放清晰度：15=360p、16=360p、32=480p、64=720p、80=1080p、74=720P60、112=1080P+、116=1080P60
+    int32 is_autoplay = 17; // 是否开启自动播放：1自动，0未自动
+    int32 video_format = 18; //视频格式：1dash，2非dash
+
+}
+
+message Event {
+    string logId = 1;  // 对应的logid 主站业务 001538
+    string eventId = 2; // 对应的eventid，适合于北极星上报场景, 非北极星上报不需要这个字段
+    bytes body = 3;  // 数据的内容为 pb 序列化 bytes 下载地址
+    map<string, string> meta = 4; // 数据的meta
+}
+ 
+message EventList {
+    repeated Event events = 1; 
+}

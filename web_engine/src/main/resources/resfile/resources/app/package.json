@@ -1,0 +1,26 @@
+{
+  "name": "bilibili",
+  "version": "1.17.5",
+  "author": "哔哩哔哩",
+  "description": "哔哩哔哩PC客户端",
+  "keywords": [
+    "B站",
+    "bilibili",
+    "哔哩哔哩",
+    "ACG",
+    "二次元",
+    "弹幕视频",
+    "直播",
+    "番剧",
+    "影视",
+    "动画",
+    "漫画",
+    "游戏",
+    "UP主",
+    "哔哩哔哩动画",
+    "哔哩哔哩弹幕网"
+  ],
+  "license": "UNLICENSED",
+  "download": "https://app.bilibili.com",
+  "homepage": "https://www.bilibili.com"
+}

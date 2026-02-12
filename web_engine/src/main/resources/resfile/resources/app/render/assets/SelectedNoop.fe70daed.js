@@ -1,0 +1,1 @@
+import{M as e,l as t,o as a,c as s,g as o,a as n}from"./index.f074ecef.js";const c={class:"i_page_wrapper"},_=n("div",{class:"i_page_content"},null,-1),p=[_],m=e({__name:"SelectedNoop",setup(i){return t(()=>{o.emit("pageSpmIdChange","main.selected.0.0")}),(d,r)=>(a(),s("div",c,p))}});export{m as default};

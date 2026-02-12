@@ -2,8 +2,8 @@
   "app": {
     "bundleName": "com.bilibili.ohos_electron",
     "vendor": "bilibili",
-    "versionCode": 100170402,
-    "versionName": "1.17.4.4544",
+    "versionCode": 100170501,
+    "versionName": "1.17.5.4680",
     "icon": "$media:app_layered_image",
     "label": "$string:app_name",
     "configuration": "$profile:configuration",
